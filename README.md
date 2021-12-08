@@ -59,4 +59,3 @@ GET api/rooms/:id
 Retrieve one room by specific room ID
 
 
-
