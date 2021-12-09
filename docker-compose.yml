@@ -2,19 +2,26 @@ version: "3.9"
    
 services:
   db:
+    environment:
+     - POSTGRES_USER=postgres
+     - POSTGRES_NAME=postgres
+     - POSTGRES_PASSWORD=postgres
+     
     image: postgres
     volumes:
       - ./data/db:/var/lib/postgresql/data
   web:
-    build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    environment:
+     - POSTGRES_USER=postgres
+     - POSTGRES_NAME=postgres
+     - POSTGRES_PASSWORD=postgres
+    image: studytomo
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+    
     volumes:
-      - .:/code
+      - .:/django_proj
     ports:
       - "8000:8000"
-    environment:
-      - POSTGRES_NAME=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-    depends_on:
-      - db
+ 
