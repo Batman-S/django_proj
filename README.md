@@ -59,3 +59,7 @@ GET api/rooms/:id
 Retrieve one room by specific room ID
 
 
+##
+
+Still in Development, however it currently live [Here!](http://159.223.72.122:8000/)
+
